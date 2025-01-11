@@ -1,1 +1,18 @@
-<p>appointment-list works!</p>
+<div>
+    <h2>New Appointment</h2>
+    <div>
+        <input [(ngModel)]="title" placeholder="Enter Title" type="text">
+        <input [(ngModel)]="description" placeholder="Enter description" type="text">
+        <input [(ngModel)]="createdDate" type="date">
+        <button (click)="addAppointment()">Add</button>
+    </div>
+    <h2>Appointment List</h2>
+    <ul>
+        <li *ngFor="let appointment of appointments;index as i">
+            <p>Title: {{appointment.title}}</p> 
+            <p>Description: {{appointment.description}}</p>
+            <p>Created At: {{appointment.createdDate | date:'dd-mm-yyyy'}}</p>
+            <button (click)="deleteAppointment(i)">delete</button>
+        </li>
+    </ul>
+</div>
