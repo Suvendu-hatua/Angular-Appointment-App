@@ -1,18 +1,33 @@
-<div>
-    <h2>New Appointment</h2>
-    <div>
-        <input [(ngModel)]="title" placeholder="Enter Title" type="text">
-        <input [(ngModel)]="description" placeholder="Enter description" type="text">
-        <input [(ngModel)]="createdDate" type="date">
-        <button (click)="addAppointment()">Add</button>
+<div class="container">
+    <h2 class="text-center mt-3">New Appointment</h2>
+    <div class="row border border-success p-4 mt-3">
+        <div class="col">
+          <input [(ngModel)]="title" class="form-control" placeholder="Enter Title" type="text">
+        </div>
+        <div class="col">
+            <input [(ngModel)]="description" class="form-control"  placeholder="Enter description" type="text">
+        </div>
+        <div class="col">
+            <input [(ngModel)]="createdDate" class="form-control" type="date">
+        </div>
+        <div class="col">
+            <button class="btn btn-success w-100" (click)="addAppointment()">Add</button>
+        </div>
+      </div>
+    
+   <div class="mt-4">
+    <h2 class="mt-4">Appointment List</h2>
+    <div *ngFor="let appointment of appointments;index as i" class="card w-50 mb-3 border border-warning">
+        <h5 class="card-header bg-warning">{{appointment.title}}</h5>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <p class="card-text">{{appointment.description}}</p>
+              <div class="d-flex justify-content-between">
+                <p>Created At: {{appointment.createdDate | date:'dd-mm-yyyy'}}</p>
+                <button class="btn btn-danger w-25" (click)="deleteAppointment(i)">Delete</button>
+              </div>
+            </div>
     </div>
-    <h2>Appointment List</h2>
-    <ul>
-        <li *ngFor="let appointment of appointments;index as i">
-            <p>Title: {{appointment.title}}</p> 
-            <p>Description: {{appointment.description}}</p>
-            <p>Created At: {{appointment.createdDate | date:'dd-mm-yyyy'}}</p>
-            <button (click)="deleteAppointment(i)">delete</button>
-        </li>
-    </ul>
+   
+   </div>
 </div>
